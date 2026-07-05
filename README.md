@@ -1,4 +1,4 @@
-# BwbAlarmWatcher2
+# BwbAlarmWatcher
 
 Alarm monitor service for the Bergwacht Kempten rescue station. Runs on a Raspberry Pi 5,
 polls the Bergwacht Bayern API for active alarms and switches the station TV (LG OLED55B6D-Z)
@@ -41,7 +41,7 @@ host; the code is fully AOT-compatible (analyzers enforced in the csproj).
 `.github/workflows/ci-cd.yml` runs on every push/PR to `main`: restore, `dotnet format`
 check, build, tests, vulnerable-package check. Pushing a tag `v*` additionally publishes
 the trimmed linux-arm64 single-file binary and creates a GitHub release with
-`bwbAlarmWatcher2-linux-arm64.tar.gz` (binary, `appsettings.json`, systemd unit,
+`bwbAlarmWatcher-linux-arm64.tar.gz` (binary, `appsettings.json`, systemd unit,
 env example, `update.sh`).
 
 Cut a release:
@@ -57,38 +57,38 @@ git tag v2.0.0 && git push origin v2.0.0
 ```bash
 sudo apt install cec-utils jq curl
 # private repo only: fine-grained PAT with contents:read on this repo
-echo '<PAT>' | sudo tee /opt/BwbAlarmWatcher2/.github_token >/dev/null
-sudo install -d /opt/BwbAlarmWatcher2 && sudo chmod 600 /opt/BwbAlarmWatcher2/.github_token
+echo '<PAT>' | sudo tee /opt/BwbAlarmWatcher/.github_token >/dev/null
+sudo install -d /opt/BwbAlarmWatcher && sudo chmod 600 /opt/BwbAlarmWatcher/.github_token
 # fetch the updater once, then let it bootstrap everything (user, unit, env, binary)
-curl -fsSL -H "Authorization: Bearer $(sudo cat /opt/BwbAlarmWatcher2/.github_token)" \
-  https://raw.githubusercontent.com/Luca206/BwbAlarmWatcher2/main/deploy/update.sh \
-  | sudo tee /opt/BwbAlarmWatcher2/update.sh >/dev/null
-sudo chmod +x /opt/BwbAlarmWatcher2/update.sh
-sudo /opt/BwbAlarmWatcher2/update.sh
+curl -fsSL -H "Authorization: Bearer $(sudo cat /opt/BwbAlarmWatcher/.github_token)" \
+  https://raw.githubusercontent.com/Luca206/BwbAlarmWatcher/main/deploy/update.sh \
+  | sudo tee /opt/BwbAlarmWatcher/update.sh >/dev/null
+sudo chmod +x /opt/BwbAlarmWatcher/update.sh
+sudo /opt/BwbAlarmWatcher/update.sh
 # then set the token and TV IP:
-sudoedit /opt/BwbAlarmWatcher2/bwbAlarmWatcher2.env
-sudo systemctl restart bwbAlarmWatcher2.service
+sudoedit /opt/BwbAlarmWatcher/bwbAlarmWatcher.env
+sudo systemctl restart bwbAlarmWatcher.service
 ```
 
 ### Update to the latest release
 
 ```bash
-sudo /opt/BwbAlarmWatcher2/update.sh          # no-op when already up to date
-sudo /opt/BwbAlarmWatcher2/update.sh --force  # reinstall current version
+sudo /opt/BwbAlarmWatcher/update.sh          # no-op when already up to date
+sudo /opt/BwbAlarmWatcher/update.sh --force  # reinstall current version
 ```
 
 ### Configuration on the Pi
 
 Settings are layered; later sources override earlier ones:
 
-1. `/opt/BwbAlarmWatcher2/appsettings.json` — full settings, freely editable.
+1. `/opt/BwbAlarmWatcher/appsettings.json` — full settings, freely editable.
    `update.sh` never overwrites it (it is only created on first install).
-2. `/opt/BwbAlarmWatcher2/bwbAlarmWatcher2.env` — environment variables
+2. `/opt/BwbAlarmWatcher/bwbAlarmWatcher.env` — environment variables
    (`Section__Key=value`), override `appsettings.json`. Keep secrets here
    (`Api__AuthToken`), mode 600. Also never touched by updates.
 
-After any change: `sudo systemctl restart bwbAlarmWatcher2.service`, check with
-`journalctl -u bwbAlarmWatcher2.service -f`.
+After any change: `sudo systemctl restart bwbAlarmWatcher.service`, check with
+`journalctl -u bwbAlarmWatcher.service -f`.
 
 ## Open points before production
 

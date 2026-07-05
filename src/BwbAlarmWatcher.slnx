@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="BwbAlarmWatcher.Tests/BwbAlarmWatcher.Tests.csproj" />
+  <Project Path="BwbAlarmWatcher/BwbAlarmWatcher.csproj" />
+</Solution>

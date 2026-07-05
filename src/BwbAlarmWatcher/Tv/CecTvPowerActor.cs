@@ -1,8 +1,8 @@
 using System.Diagnostics;
-using BwbAlarmWatcher2.Configuration;
+using BwbAlarmWatcher.Configuration;
 using Microsoft.Extensions.Options;
 
-namespace BwbAlarmWatcher2.Tv;
+namespace BwbAlarmWatcher.Tv;
 
 /// <summary>
 /// Switches the TV via HDMI-CEC using one-shot cec-client invocations. Unlike v1 there is no

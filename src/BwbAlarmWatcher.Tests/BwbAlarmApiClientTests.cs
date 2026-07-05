@@ -2,13 +2,13 @@ using System.Collections.Frozen;
 using System.Net;
 using System.Text;
 using System.Text.Json;
-using BwbAlarmWatcher2.Alarms;
-using BwbAlarmWatcher2.Configuration;
+using BwbAlarmWatcher.Alarms;
+using BwbAlarmWatcher.Configuration;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Time.Testing;
 
-namespace BwbAlarmWatcher2.Tests;
+namespace BwbAlarmWatcher.Tests;
 
 public class BwbAlarmApiClientTests
 {

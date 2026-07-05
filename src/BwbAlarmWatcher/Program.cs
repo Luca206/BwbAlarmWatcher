@@ -1,8 +1,8 @@
 using System.Net;
-using BwbAlarmWatcher2;
-using BwbAlarmWatcher2.Alarms;
-using BwbAlarmWatcher2.Configuration;
-using BwbAlarmWatcher2.Tv;
+using BwbAlarmWatcher;
+using BwbAlarmWatcher.Alarms;
+using BwbAlarmWatcher.Configuration;
+using BwbAlarmWatcher.Tv;
 using Microsoft.Extensions.Options;
 
 var builder = Host.CreateApplicationBuilder(args);

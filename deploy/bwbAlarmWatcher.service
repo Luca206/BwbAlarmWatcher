@@ -1,14 +1,14 @@
-# /etc/systemd/system/bwbAlarmWatcher2.service
+# /etc/systemd/system/bwbAlarmWatcher.service
 #
 # Install:
-#   sudo cp bwbAlarmWatcher2.service /etc/systemd/system/
+#   sudo cp bwbAlarmWatcher.service /etc/systemd/system/
 #   sudo systemctl daemon-reload
-#   sudo systemctl enable --now bwbAlarmWatcher2.service
+#   sudo systemctl enable --now bwbAlarmWatcher.service
 # Logs:
-#   journalctl -u bwbAlarmWatcher2.service -f
+#   journalctl -u bwbAlarmWatcher.service -f
 
 [Unit]
-Description=BwbAlarmWatcher2 - Bergwacht Kempten Alarmmonitor TV-Steuerung
+Description=BwbAlarmWatcher - Bergwacht Kempten Alarmmonitor TV-Steuerung
 Wants=network-online.target
 After=network-online.target
 
@@ -25,10 +25,10 @@ RestartSec=5
 User=bwbalarmwatcher
 Group=bwbalarmwatcher
 
-WorkingDirectory=/opt/BwbAlarmWatcher2
-ExecStart=/opt/BwbAlarmWatcher2/BwbAlarmWatcher2
+WorkingDirectory=/opt/BwbAlarmWatcher
+ExecStart=/opt/BwbAlarmWatcher/BwbAlarmWatcher
 # Contains Api__AuthToken and Tv__IpAddress (mode 600, owner bwbalarmwatcher).
-EnvironmentFile=/opt/BwbAlarmWatcher2/bwbAlarmWatcher2.env
+EnvironmentFile=/opt/BwbAlarmWatcher/bwbAlarmWatcher.env
 
 # Hardening (kept compatible with cec-client and ICMP ping)
 NoNewPrivileges=true

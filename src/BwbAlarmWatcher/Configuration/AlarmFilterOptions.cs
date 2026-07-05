@@ -1,4 +1,4 @@
-namespace BwbAlarmWatcher2.Configuration;
+namespace BwbAlarmWatcher.Configuration;
 
 /// <summary>
 /// Filter rules deciding which fetched alarms activate the TV. Ported unchanged from v1

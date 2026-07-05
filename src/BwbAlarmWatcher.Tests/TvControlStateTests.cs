@@ -1,4 +1,4 @@
-namespace BwbAlarmWatcher2.Tests;
+namespace BwbAlarmWatcher.Tests;
 
 public class TvControlStateTests
 {

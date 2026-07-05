@@ -1,4 +1,4 @@
-namespace BwbAlarmWatcher2;
+namespace BwbAlarmWatcher;
 
 /// <summary>
 /// Tracks whether this service switched the TV on. Only then may it switch the TV off again;

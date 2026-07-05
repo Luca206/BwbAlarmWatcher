@@ -1,4 +1,4 @@
-namespace BwbAlarmWatcher2.Tv;
+namespace BwbAlarmWatcher.Tv;
 
 public interface ITvStatusSensor
 {

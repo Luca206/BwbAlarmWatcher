@@ -1,7 +1,7 @@
 using System.ComponentModel.DataAnnotations;
 using Microsoft.Extensions.Options;
 
-namespace BwbAlarmWatcher2.Configuration;
+namespace BwbAlarmWatcher.Configuration;
 
 public sealed class WorkerOptions
 {

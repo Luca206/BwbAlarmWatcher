@@ -1,20 +1,20 @@
 #!/usr/bin/env bash
-# Fetches the latest BwbAlarmWatcher2 release from GitHub and installs it.
+# Fetches the latest BwbAlarmWatcher release from GitHub and installs it.
 #
-#   sudo /opt/BwbAlarmWatcher2/update.sh          # update (or first install)
-#   sudo /opt/BwbAlarmWatcher2/update.sh --force  # reinstall even if up to date
+#   sudo /opt/BwbAlarmWatcher/update.sh          # update (or first install)
+#   sudo /opt/BwbAlarmWatcher/update.sh --force  # reinstall even if up to date
 #
-# Local configuration survives updates: appsettings.json and bwbAlarmWatcher2.env
+# Local configuration survives updates: appsettings.json and bwbAlarmWatcher.env
 # are only created when missing, never overwritten.
 #
 # For a private repository, store a fine-grained PAT (contents: read) at
-# /opt/BwbAlarmWatcher2/.github_token (mode 600). Requires: curl, jq.
+# /opt/BwbAlarmWatcher/.github_token (mode 600). Requires: curl, jq.
 set -euo pipefail
 
-INSTALL_DIR="/opt/BwbAlarmWatcher2"
-REPO="Luca206/BwbAlarmWatcher2"
-ASSET="bwbAlarmWatcher2-linux-arm64.tar.gz"
-SERVICE="bwbAlarmWatcher2.service"
+INSTALL_DIR="/opt/BwbAlarmWatcher"
+REPO="Luca206/BwbAlarmWatcher"
+ASSET="bwbAlarmWatcher-linux-arm64.tar.gz"
+SERVICE="bwbAlarmWatcher.service"
 SERVICE_USER="bwbalarmwatcher"
 TOKEN_FILE="$INSTALL_DIR/.github_token"
 
@@ -56,10 +56,10 @@ tar -xzf "$tmp/$ASSET" -C "$tmp/unpacked"
 id "$SERVICE_USER" &>/dev/null || useradd --system --no-create-home --groups video "$SERVICE_USER"
 mkdir -p "$INSTALL_DIR"
 
-if [[ ! -f "$INSTALL_DIR/bwbAlarmWatcher2.env" ]]; then
+if [[ ! -f "$INSTALL_DIR/bwbAlarmWatcher.env" ]]; then
   install -o "$SERVICE_USER" -g "$SERVICE_USER" -m 600 \
-    "$tmp/unpacked/bwbAlarmWatcher2.env.example" "$INSTALL_DIR/bwbAlarmWatcher2.env"
-  echo "NOTE: new env file created - set Api__AuthToken and Tv__IpAddress in $INSTALL_DIR/bwbAlarmWatcher2.env"
+    "$tmp/unpacked/bwbAlarmWatcher.env.example" "$INSTALL_DIR/bwbAlarmWatcher.env"
+  echo "NOTE: new env file created - set Api__AuthToken and Tv__IpAddress in $INSTALL_DIR/bwbAlarmWatcher.env"
 fi
 
 if [[ ! -f "/etc/systemd/system/$SERVICE" ]]; then
@@ -72,7 +72,7 @@ fi
 systemctl stop "$SERVICE" 2>/dev/null || true
 
 install -o "$SERVICE_USER" -g "$SERVICE_USER" -m 755 \
-  "$tmp/unpacked/BwbAlarmWatcher2" "$INSTALL_DIR/BwbAlarmWatcher2"
+  "$tmp/unpacked/BwbAlarmWatcher" "$INSTALL_DIR/BwbAlarmWatcher"
 
 # appsettings.json only when missing, so local adjustments survive updates
 if [[ ! -f "$INSTALL_DIR/appsettings.json" ]]; then

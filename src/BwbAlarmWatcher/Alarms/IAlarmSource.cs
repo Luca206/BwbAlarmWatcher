@@ -1,4 +1,4 @@
-namespace BwbAlarmWatcher2.Alarms;
+namespace BwbAlarmWatcher.Alarms;
 
 /// <summary>An alarm that is currently active. Only the identity is kept (data minimisation requirement).</summary>
 public sealed record ActiveAlarm(string Id);

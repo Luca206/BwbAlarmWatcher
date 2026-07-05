@@ -1,9 +1,9 @@
 using System.Net;
 using System.Net.NetworkInformation;
-using BwbAlarmWatcher2.Configuration;
+using BwbAlarmWatcher.Configuration;
 using Microsoft.Extensions.Options;
 
-namespace BwbAlarmWatcher2.Tv;
+namespace BwbAlarmWatcher.Tv;
 
 public sealed partial class PingTvStatusSensor(
     IOptions<TvOptions> options,

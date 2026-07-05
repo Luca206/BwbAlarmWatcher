@@ -60,20 +60,20 @@ jobs:
       - name: Publish linux-arm64 single file
         run: |
           VERSION="${GITHUB_REF_NAME#v}"
-          dotnet publish src/BwbAlarmWatcher2 -c Release -r linux-arm64 --self-contained \
+          dotnet publish src/BwbAlarmWatcher -c Release -r linux-arm64 --self-contained \
             -p:PublishTrimmed=true -p:PublishSingleFile=true -p:Version="$VERSION" \
             -o publish
 
       - name: Package release archive
         run: |
           mkdir package
-          cp publish/BwbAlarmWatcher2 publish/appsettings.json package/
-          cp deploy/bwbAlarmWatcher2.service deploy/bwbAlarmWatcher2.env.example deploy/update.sh package/
-          tar -czf bwbAlarmWatcher2-linux-arm64.tar.gz -C package .
+          cp publish/BwbAlarmWatcher publish/appsettings.json package/
+          cp deploy/bwbAlarmWatcher.service deploy/bwbAlarmWatcher.env.example deploy/update.sh package/
+          tar -czf bwbAlarmWatcher-linux-arm64.tar.gz -C package .
 
       - name: Create GitHub release
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create "$GITHUB_REF_NAME" bwbAlarmWatcher2-linux-arm64.tar.gz \
+          gh release create "$GITHUB_REF_NAME" bwbAlarmWatcher-linux-arm64.tar.gz \
             --title "$GITHUB_REF_NAME" --generate-notes

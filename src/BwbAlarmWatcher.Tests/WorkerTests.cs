@@ -1,12 +1,12 @@
-using BwbAlarmWatcher2.Alarms;
-using BwbAlarmWatcher2.Configuration;
-using BwbAlarmWatcher2.Tv;
+using BwbAlarmWatcher.Alarms;
+using BwbAlarmWatcher.Configuration;
+using BwbAlarmWatcher.Tv;
 using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Options;
 using Microsoft.Extensions.Time.Testing;
 using Moq;
 
-namespace BwbAlarmWatcher2.Tests;
+namespace BwbAlarmWatcher.Tests;
 
 public class WorkerTests
 {

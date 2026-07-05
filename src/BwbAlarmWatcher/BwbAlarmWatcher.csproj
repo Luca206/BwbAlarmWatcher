@@ -4,7 +4,7 @@
     <TargetFramework>net10.0</TargetFramework>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
-    <RootNamespace>BwbAlarmWatcher2</RootNamespace>
+    <RootNamespace>BwbAlarmWatcher</RootNamespace>
     <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
     <!-- Keeps the code publishable as a single Native AOT binary for the Pi (linux-arm64). -->
     <IsAotCompatible>true</IsAotCompatible>
@@ -19,7 +19,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <InternalsVisibleTo Include="BwbAlarmWatcher2.Tests" />
+    <InternalsVisibleTo Include="BwbAlarmWatcher.Tests" />
   </ItemGroup>
 
 </Project>

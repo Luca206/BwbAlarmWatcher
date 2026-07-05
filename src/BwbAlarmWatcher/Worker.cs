@@ -1,9 +1,9 @@
-using BwbAlarmWatcher2.Alarms;
-using BwbAlarmWatcher2.Configuration;
-using BwbAlarmWatcher2.Tv;
+using BwbAlarmWatcher.Alarms;
+using BwbAlarmWatcher.Configuration;
+using BwbAlarmWatcher.Tv;
 using Microsoft.Extensions.Options;
 
-namespace BwbAlarmWatcher2;
+namespace BwbAlarmWatcher;
 
 public sealed partial class Worker(
     IAlarmSource alarmSource,

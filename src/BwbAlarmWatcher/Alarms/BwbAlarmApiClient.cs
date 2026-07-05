@@ -2,10 +2,10 @@ using System.Collections.Frozen;
 using System.Globalization;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
-using BwbAlarmWatcher2.Configuration;
+using BwbAlarmWatcher.Configuration;
 using Microsoft.Extensions.Options;
 
-namespace BwbAlarmWatcher2.Alarms;
+namespace BwbAlarmWatcher.Alarms;
 
 /// <summary>
 /// Fetches alarms via the GraphQL endpoint. Query shape and filter rules are ported from v1's

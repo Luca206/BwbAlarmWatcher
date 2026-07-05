@@ -1,6 +1,6 @@
 using System.Text.Json.Serialization;
 
-namespace BwbAlarmWatcher2.Alarms;
+namespace BwbAlarmWatcher.Alarms;
 
 // GraphQL-over-HTTP contracts. The shape mirrors v1's generated Bwb.GraphQL.Client types
 // (PageOfAlarm { hasNextPage, results }, Alarm { id, extid, subkind, message }), but only the
