@@ -1,0 +1,20 @@
+# Build output
+bin/
+obj/
+publish/
+*.user
+.vs/
+
+# Secrets / local environment — never commit tokens
+.env
+*.env
+!*.env.example
+
+# Local tooling
+.claude/
+
+# Project knowledge vault (contains operator API documentation that must not be shared)
+knowledge/
+
+# IDE
+.idea/

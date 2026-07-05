@@ -1,0 +1,40 @@
+# /etc/systemd/system/bwbAlarmWatcher2.service
+#
+# Install:
+#   sudo cp bwbAlarmWatcher2.service /etc/systemd/system/
+#   sudo systemctl daemon-reload
+#   sudo systemctl enable --now bwbAlarmWatcher2.service
+# Logs:
+#   journalctl -u bwbAlarmWatcher2.service -f
+
+[Unit]
+Description=BwbAlarmWatcher2 - Bergwacht Kempten Alarmmonitor TV-Steuerung
+Wants=network-online.target
+After=network-online.target
+
+[Service]
+# Type=notify + WatchdogSec: the host signals readiness and pings the systemd
+# watchdog; if the process ever hangs, systemd kills and restarts it.
+Type=notify
+WatchdogSec=60
+Restart=always
+RestartSec=5
+
+# Dedicated system user; member of "video" so cec-client can access /dev/cec0:
+#   sudo useradd --system --no-create-home --groups video bwbalarmwatcher
+User=bwbalarmwatcher
+Group=bwbalarmwatcher
+
+WorkingDirectory=/opt/BwbAlarmWatcher2
+ExecStart=/opt/BwbAlarmWatcher2/BwbAlarmWatcher2
+# Contains Api__AuthToken and Tv__IpAddress (mode 600, owner bwbalarmwatcher).
+EnvironmentFile=/opt/BwbAlarmWatcher2/bwbAlarmWatcher2.env
+
+# Hardening (kept compatible with cec-client and ICMP ping)
+NoNewPrivileges=true
+ProtectSystem=full
+ProtectHome=true
+PrivateTmp=true
+
+[Install]
+WantedBy=multi-user.target
